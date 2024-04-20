@@ -8,7 +8,6 @@ import {
 } from "@stream-io/video-react-sdk";
 import MyUiLayout from "./MyUiLayout";
 import { FormEvent, useEffect, useState } from "react";
-import { env } from "process";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
 
