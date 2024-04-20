@@ -10,7 +10,6 @@ export async function POST(request: Request) {
     const data = await request.formData()
     const userId = data.get('user_id')
     const exp = Math.round(new Date().getTime() / 1000) + 60 * 60;
-
     const token = client.createToken(userId as string,exp);
     const callId = 'jN9qmb6vrosu'//require('crypto').randomUUID()
     return NextResponse.json({ token,userId,callId })

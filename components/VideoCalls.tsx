@@ -8,6 +8,7 @@ import {
 } from "@stream-io/video-react-sdk";
 import MyUiLayout from "./MyUiLayout";
 import { FormEvent, useEffect, useState } from "react";
+import { env } from "process";
 
 const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
 
@@ -24,7 +25,6 @@ const MyCall = () => {
   );
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
   const startCalling = async () => {
-    console.log(userInfo)
      const call = myClient!.call("default", 'n7OzCV5Tolxt');//userInfo?.callId as string );
     await call.join({ create: true });
     setMyCall(call); 
@@ -32,7 +32,7 @@ const MyCall = () => {
   const generateToken = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
      const formdata = new FormData(e.currentTarget);
-    const res = await fetch("api/generate_token", {
+    const res = await fetch(`${process.env.MY_DEPLOYING_URL}/api/generate_token`, {
       method: "POST",
       body: formdata,
     });
