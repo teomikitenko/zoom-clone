@@ -32,7 +32,7 @@ const MyCall = () => {
   const generateToken = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
      const formdata = new FormData(e.currentTarget);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_MY_DEPLOYING_URL}/api/generate_token`, {
+    const res = await fetch(`https://zoom-clone-vert-rho.vercel.app/api/generate_token`, {
       method: "POST",
       body: formdata,
     });
