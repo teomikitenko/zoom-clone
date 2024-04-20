@@ -5,15 +5,10 @@ import {
 import React from "react";
 
 const ParticipantList = (props: { participants: StreamVideoParticipant[] }) => {
+  console.log(props.participants)
   return (
     <div
-      style={{
-        display: "flex",
-        width:'100%',
-        height: "800px",
-        flexDirection: "row",
-        gap: "8px",
-      }}
+    style={{ display: 'flex', flexDirection: 'row', gap: '8px' }}
     >
       {props.participants.map((participant) => (
         <ParticipantView

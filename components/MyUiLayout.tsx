@@ -1,5 +1,7 @@
 import {
+  CallControls,
   CallingState,
+  SpeakerLayout,
   StreamTheme,
   useCall,
   useCallStateHooks,
@@ -27,6 +29,8 @@ const MyUiLayout = () => {
         <>
           <LocalParticipant participant={localParticipant} />
           <ParticipantList participants={remoteParticipants} /> 
+          <SpeakerLayout participantsBarPosition='bottom' />
+          <CallControls />
         </>
       )}
     </StreamTheme>
@@ -34,3 +38,4 @@ const MyUiLayout = () => {
 };
 
 export default MyUiLayout;
+

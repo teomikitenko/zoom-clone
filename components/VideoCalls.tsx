@@ -1,60 +1,78 @@
 "use client";
 import {
-  CallingState,
   StreamCall,
   StreamVideo,
   StreamVideoClient,
-  useCall,
-  useCallStateHooks,
   User,
   Call,
 } from "@stream-io/video-react-sdk";
 import MyUiLayout from "./MyUiLayout";
-import { useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
-const apiKey = "mmhfdzb5evj2"; // take my key
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiSmFuZ29fRmV0dCIsImlzcyI6Imh0dHBzOi8vcHJvbnRvLmdldHN0cmVhbS5pbyIsInN1YiI6InVzZXIvSmFuZ29fRmV0dCIsImlhdCI6MTcxMzQzMjgxNiwiZXhwIjoxNzE0MDM3NjIxfQ.Wr2er7B-jcGs0QG_ACy8eFZgkpBIm7eSfciKdPnOCjk"; // generate token on backend
-const userId = "Jango_Fett"; // the user id can be found in the "Credentials" section
-const callId =  "CXBVtOOL88TW"
+const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
 
-const user: User = {
-  id: userId,
-  name: "Yevhenii",
-  image: "https://getstream.io/random_svg/?id=oliver&name=Oliver",
+type UserInfo = {
+  userId: string;
+  callId: string;
+  user: User;
+  token:string
 };
-
-2;
 const MyCall = () => {
-  const [user, setUser] = useState<User>({
-    id: userId,
-    name: "Yevhenii",
-    image: "https://getstream.io/random_svg/?id=oliver&name=Oliver",
-  });
   const [myCall, setMyCall] = useState<Call | undefined>(undefined);
-  const [myClient, setMyClient] = useState(
-    new StreamVideoClient({ apiKey, user, token })
+  const [myClient, setMyClient] = useState<StreamVideoClient | undefined>(
+    undefined
   );
+  const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
   const startCalling = async () => {
-    const call = myClient.call("default", callId);
+    console.log(userInfo)
+     const call = myClient!.call("default", 'n7OzCV5Tolxt')//userInfo?.callId as string );
     await call.join({ create: true });
-    setMyCall(call);
+    setMyCall(call); 
   };
+  const generateToken = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+     const formdata = new FormData(e.currentTarget);
+    const res = await fetch("api/generate_token", {
+      method: "POST",
+      body: formdata,
+    });
+    const { token, userId, callId } = await res.json(); 
+    const user: User = {
+      id: userId,
+      name: 'yohan',
+      image: "https://getstream.io/random_svg/?id=oliver&name=Oliver",
+    };
+    setUserInfo({ userId, callId, user,token });
+  };
+  useEffect(() => {
+    if (userInfo) {
+      const client = new StreamVideoClient({
+        apiKey,
+        user:userInfo.user, 
+        token:userInfo.token, 
+      });
+      setMyClient(client);
+    }
+  }, [userInfo]);
   return (
     <>
-    <div className="w-full h-full flex flex-col gap-5">
-      <div>
-        {myCall && (
-          <StreamVideo client={myClient}>
-            <StreamCall call={myCall}>
-              <MyUiLayout />
-            </StreamCall>
-          </StreamVideo>
-        )}
+      <form id="myForm" onSubmit={generateToken}>
+        <input name="user_id" type="text" />
+        <button type="submit">Send Id</button>
+      </form>
+      <div className="w-full h-full flex flex-col gap-5">
+        <div>
+          {myCall && (
+            <StreamVideo client={myClient!}>
+              <StreamCall call={myCall}>
+                <MyUiLayout />
+              </StreamCall>
+            </StreamVideo>
+          )}
         </div>
-        
-        <div className="flex gap-4">
-          <button onClick={startCalling}>Start Call</button>
+
+        <div className="flex gap-4 mt-56">
+          { userInfo && <button onClick={startCalling}>Start Call</button>}
           <button onClick={() => myCall?.endCall()}>End Call</button>
         </div>
       </div>
@@ -62,3 +80,4 @@ const MyCall = () => {
   );
 };
 export default MyCall;
+//https://getstream.io/video/demos/join/n7OzCV5Tolxt?user_id=Natasi_Daala&id=n7OzCV5Tolxt
