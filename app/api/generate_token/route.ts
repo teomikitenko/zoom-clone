@@ -1,4 +1,3 @@
-export const dynamic = 'force-dynamic' 
 
 import { StreamClient, UserObjectRequest } from "@stream-io/node-sdk";
 import { NextResponse } from "next/server"
