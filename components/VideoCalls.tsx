@@ -25,7 +25,7 @@ const MyCall = () => {
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
   const startCalling = async () => {
     console.log(userInfo)
-     const call = myClient!.call("default", 'n7OzCV5Tolxt')//userInfo?.callId as string );
+     const call = myClient!.call("default", 'n7OzCV5Tolxt');//userInfo?.callId as string );
     await call.join({ create: true });
     setMyCall(call); 
   };
@@ -46,6 +46,7 @@ const MyCall = () => {
   };
   useEffect(() => {
     if (userInfo) {
+      console.log(userInfo)
       const client = new StreamVideoClient({
         apiKey,
         user:userInfo.user, 
@@ -80,4 +81,3 @@ const MyCall = () => {
   );
 };
 export default MyCall;
-//https://getstream.io/video/demos/join/n7OzCV5Tolxt?user_id=Natasi_Daala&id=n7OzCV5Tolxt
