@@ -9,7 +9,7 @@ import {
 import MyUiLayout from "./MyUiLayout";
 import { FormEvent, useEffect, useState } from "react";
 
-const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
+const apiKey ='ac9crr7ggy7x';
 
 type UserInfo = {
   userId: string;
