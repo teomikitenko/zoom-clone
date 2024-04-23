@@ -9,13 +9,13 @@ import {
 import MyUiLayout from "./MyUiLayout";
 import { FormEvent, useEffect, useState } from "react";
 
-const apiKey ='ac9crr7ggy7x';
+const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
 
 type UserInfo = {
   userId: string;
   callId: string;
   user: User;
-  token:string
+  token: string;
 };
 const MyCall = () => {
   const [myCall, setMyCall] = useState<Call | undefined>(undefined);
@@ -24,32 +24,31 @@ const MyCall = () => {
   );
   const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
   const startCalling = async () => {
-     const call = myClient!.call("default", 'n7OzCV5Tolxt');//userInfo?.callId as string );
+    const call = myClient!.call("default", userInfo?.callId as string);
     await call.join({ create: true });
-    setMyCall(call); 
+    setMyCall(call);
   };
   const generateToken = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-     const formdata = new FormData(e.currentTarget);
-    const res = await fetch(`https://zoom-clone-vert-rho.vercel.app/api/generate_token`, {
+    const formdata = new FormData(e.currentTarget);
+    const res = await fetch(`/api/generate_token`, {
       method: "POST",
       body: formdata,
     });
-    const { token, userId, callId } = await res.json(); 
+    const { token, userId, callId } = await res.json();
     const user: User = {
       id: userId,
-      name: 'yohan',
+      name: "yohan",
       image: "https://getstream.io/random_svg/?id=oliver&name=Oliver",
     };
-    setUserInfo({ userId, callId, user,token });
+    setUserInfo({ userId, callId, user, token });
   };
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo)
       const client = new StreamVideoClient({
         apiKey,
-        user:userInfo.user, 
-        token:userInfo.token, 
+        user: userInfo.user,
+        token: userInfo.token,
       });
       setMyClient(client);
     }
@@ -72,7 +71,7 @@ const MyCall = () => {
         </div>
 
         <div className="flex gap-4 mt-56">
-          { userInfo && <button onClick={startCalling}>Start Call</button>}
+          {userInfo && <button onClick={startCalling}>Start Call</button>}
           <button onClick={() => myCall?.endCall()}>End Call</button>
         </div>
       </div>
