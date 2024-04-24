@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+import LeftBar from "@/components/LeftBar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,8 +17,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html className="h-full" lang="en">
+        <body
+          className={
+            inter.className +
+            " " +
+            "h-full w-full overflow-hidden bg-[#1C1F2E]  text-slate-200 flex-col"
+          }
+        >
+          <header>
+            <p>Zoom-clone</p>
+          </header>
+          <div className="flex h-full w-full">
+            <LeftBar />
+            <main className="p-7 bg-[#161925] w-full">{children}</main>
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
