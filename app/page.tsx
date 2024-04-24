@@ -51,15 +51,16 @@ export default function Home() {
               key={l.title}
               className={`${l.color} rounded-md flex flex-col p-5`}
             >
-              <div className="w-full relative">
+              <div className="w-full ">
+               
+                <div className="relative h-16 w-16   rounded-lg opacity-45  bg-white"></div>  {/* rework:need position absolute for block and icon */}
                 <Image
-                  className="absolute top-3 left-3 "
+                  className=""
                   src={l.icon}
                   width={36}
                   height={36}
                   alt="icon"
                 />
-                <div className="relative h-16 w-16   rounded-lg opacity-45  bg-white"></div>
               </div>
               <p>{l.title}</p>
               <p>{l.descr}</p>
