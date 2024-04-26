@@ -26,7 +26,6 @@ const MyUiLayout = () => {
         <>
           <LocalParticipant participant={localParticipant} />
           <ParticipantList participants={remoteParticipants} /> 
-          <SpeakerLayout participantsBarPosition='bottom' />
           <CallControls />
         </>
       )}
