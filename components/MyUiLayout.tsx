@@ -1,6 +1,7 @@
 import {
   CallControls,
   CallingState,
+  PaginatedGridLayout,
   SpeakerLayout,
   StreamTheme,
   useCall,
@@ -26,6 +27,7 @@ const MyUiLayout = () => {
         <>
           <LocalParticipant participant={localParticipant} />
           <ParticipantList participants={remoteParticipants} /> 
+          <PaginatedGridLayout />
           <CallControls />
         </>
       )}
