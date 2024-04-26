@@ -15,8 +15,8 @@ const LeftBar = () => {
     { title: "Personal Room", img: Personal, link: "personal-room" },
   ];
   return (
-    <div className="h-full min-w-[17%]">
-      <div className="pt-10 pl-5">
+    <div className="min-h-full min-w-[17%]">
+      <div className="pt-16 sticky top-0 pl-5">
         <ul className="flex flex-col gap-6">
           {links.map((l) => (
             <Link key={l.title} href={l.link}>

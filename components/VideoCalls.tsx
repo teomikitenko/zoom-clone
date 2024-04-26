@@ -5,60 +5,46 @@ import {
   StreamVideoClient,
   User,
   Call,
+  TokenProvider,
 } from "@stream-io/video-react-sdk";
 import MyUiLayout from "./MyUiLayout";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useUser } from "@clerk/nextjs";
 
-const apiKey = process.env.NEXT_PUBLIC_STREAM_API_KEY as string;
-
-type UserInfo = {
-  userId: string;
-  callId: string;
-  user: User;
-  token: string;
-};
-const MyCall = () => {
+const VideoCalls = () => {
   const [myCall, setMyCall] = useState<Call | undefined>(undefined);
   const [myClient, setMyClient] = useState<StreamVideoClient | undefined>(
     undefined
   );
-  const [userInfo, setUserInfo] = useState<UserInfo | undefined>();
+  const { user: authUser, isLoaded } = useUser();
   const startCalling = async () => {
-    const call = myClient!.call("default", userInfo?.callId as string);
+    const call = myClient!.call("default",'supadzvinok' /* authUser?.id as string */);
     await call.join({ create: true });
     setMyCall(call);
   };
-  const generateToken = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formdata = new FormData(e.currentTarget);
-    const res = await fetch(`/api/generate_token`, {
-      method: "POST",
-      body: formdata,
-    });
-    const { token, userId, callId } = await res.json();
-    const user: User = {
-      id: userId,
-      name: "yohan",
-      image: "https://getstream.io/random_svg/?id=oliver&name=Oliver",
-    };
-    setUserInfo({ userId, callId, user, token });
+  const tokenProvider = async () => {
+    const res = await fetch(`/api/generate_token`);
+    const { token } = await res.json();
+    return token;
   };
   useEffect(() => {
-    if (userInfo) {
+    if (isLoaded) {
+      const user: User = {
+        id: authUser?.id as string,
+        name: authUser?.firstName as string,
+        image: authUser?.imageUrl,
+      };
       const client = new StreamVideoClient({
-        apiKey,
-        user: userInfo.user,
-        token: userInfo.token,
+        apiKey: process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
+        user,
+        tokenProvider: tokenProvider as TokenProvider,
       });
+
       setMyClient(client);
     }
-  }, [userInfo]);
+  }, [isLoaded]);
   return (
     <>
-      <form id="myForm" onSubmit={generateToken}>
-        <input name="user_id" type="text" />
-        <button type="submit">Send Id</button>
-      </form>
       <div className="w-full h-full flex flex-col gap-5">
         <div>
           {myCall && (
@@ -71,11 +57,11 @@ const MyCall = () => {
         </div>
 
         <div className="flex gap-4 mt-56">
-          {userInfo && <button onClick={startCalling}>Start Call</button>}
+          <button onClick={startCalling}>Start Call</button>
           <button onClick={() => myCall?.endCall()}>End Call</button>
         </div>
       </div>
     </>
   );
 };
-export default MyCall;
+export default VideoCalls;

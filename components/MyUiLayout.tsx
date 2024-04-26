@@ -11,13 +11,10 @@ import ParticipantList from "./ParticipantList";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 
 const MyUiLayout = () => {
-  const call = useCall();
   const {
     useCallCallingState,
     useLocalParticipant,
     useRemoteParticipants,
-    useParticipants,
-    // ... other hooks
   } = useCallStateHooks();
 
   const callingState = useCallCallingState();

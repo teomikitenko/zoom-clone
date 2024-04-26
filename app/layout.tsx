@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import LeftBar from "@/components/LeftBar";
 import "./globals.css";
 
@@ -18,20 +18,30 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html className="h-full" lang="en">
+      <html className="min-h-screen" lang="en">
         <body
           className={
             inter.className +
             " " +
-            "h-full w-full overflow-hidden bg-[#1C1F2E]  text-slate-200 flex-col"
+            "h-screen w-full  bg-[#1C1F2E]  text-slate-200 flex-col"
           }
         >
           <header>
-            <p>Zoom-clone</p>
+            <div className="w-full bg-[#1C1F2E] fixed z-50 py-3 px-5 flex justify-between">
+              <p>Zoom-clone</p> 
+             <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            </div>
           </header>
-          <div className="flex h-full w-full">
+          <div className="flex min-h-full w-full">
             <LeftBar />
-            <main className="p-7 bg-[#161925] w-full">{children}</main>
+            <main className="pl-7 pr-7 pb-7 pt-14 bg-[#161925] min-h-full w-full">
+              {children}
+            </main>
           </div>
         </body>
       </html>
