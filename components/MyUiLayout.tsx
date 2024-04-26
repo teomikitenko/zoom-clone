@@ -25,8 +25,7 @@ const MyUiLayout = () => {
     <StreamTheme>
       {callingState === "joined" && (
         <>
-          <LocalParticipant participant={localParticipant} />
-          <ParticipantList participants={remoteParticipants} /> 
+          
           <PaginatedGridLayout />
           <CallControls />
         </>
