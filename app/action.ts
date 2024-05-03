@@ -11,3 +11,9 @@ export async function createUser(formdata:FormData) {
       },
     });
   }
+  export async function createMeetings(formdata:FormData){
+    console.log({
+      date:formdata.get('date'),
+      description:formdata.get('description')
+    })
+  }
