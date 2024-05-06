@@ -1,19 +1,14 @@
-"use client";
 import Image from "next/image";
 import Hero from "@/public/images/hero-background.png";
 import AddMeeting from "@/public/icons/add-meeting.svg";
 import JoinMeeting from "@/public/icons/join-meeting.svg";
 import Schedule from "@/public/icons/schedule.svg";
 import Recordings from "@/public/icons/recordings.svg";
-import { useContext } from "react";
-import { ModalContext } from "@/components/Provider";
 import { LinksType } from "@/types/types";
-import type { T } from "@/types/types";
-import dynamic from 'next/dynamic'
+import CurrentDate from "@/components/CurrentDate";
+import CallModal from "@/components/Modals/CallModal";
 
-const DynamicDate = dynamic(() => import('../../components/CurrentDate'), { ssr: false })
 
-//this page need be server component,fix this
 export default function Home() {
   const createLink:LinksType = [
     {
@@ -45,13 +40,6 @@ export default function Home() {
       typeModal:'Recordings'
     },
   ];
-  const{modalState,setModalState}=useContext(ModalContext as React.Context<T>)
-  const setModal = (type:string)=>{
-   setModalState({
-    open:true,
-    type
-   })
-  }
   return (
     <>
        <div className="flex flex-col w-full h-full relative">
@@ -66,7 +54,7 @@ export default function Home() {
               className="absolute top-0 left-0 object-cover"
               alt="hero"
             />
-            <DynamicDate/>
+            <CurrentDate/>
           </div>
           <div className="grid gap-3 grid-cols-4 h-[16rem]">
             {createLink.map((l) => (
@@ -76,14 +64,7 @@ export default function Home() {
               >
                 <div className="w-full relative">
                   <div className="w-16 rounded-lg h-16 opacity-35 bg-white"></div>
-                  <Image
-                    onClick={()=>setModal(l.typeModal)}
-                    className="absolute top-3 left-3 cursor-pointer"
-                    src={l.icon}
-                    width={38}
-                    height={38}
-                    alt="icon"
-                  />
+                <CallModal icon={l.icon} typeModal={l.typeModal} />
                 </div>
                 <div>
                   <p className="text-lg font-medium">{l.title}</p>

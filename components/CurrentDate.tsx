@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+"use client"
+import{ useEffect, useState } from "react";
 
-
-const DynamicDate = () => {
+const CurrentDate = () => {
   const currentDate = new Date();
   const formatedData = new Intl.DateTimeFormat('en-US',{
     dateStyle: 'full',
@@ -30,4 +30,4 @@ const DynamicDate = () => {
   );
 };
 
-export default DynamicDate;
+export default CurrentDate;

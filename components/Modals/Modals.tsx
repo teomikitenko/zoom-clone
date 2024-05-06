@@ -2,10 +2,18 @@
 import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../Provider";
 import { T } from "@/types/types";
-import CreateMeetingsModal from "./CreateMeetings";
-import StartMeeting from "./StartMeeting";
-import JoinMeetings from "./JoinMeetings";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const CreateMeetingsModal = dynamic(() => import("./CreateMeetings"), {
+  ssr: false,
+});
+const StartMeetingModal = dynamic(() => import("./StartMeeting"), {
+  ssr: false,
+});
+const JoinMeetingsModal = dynamic(() => import("./JoinMeetings"), {
+  ssr: false,
+});
 
 const Modals = () => {
   const { modalState, setModalState } = useContext(
@@ -28,7 +36,7 @@ const Modals = () => {
         case "Start Meeting":
           let uuid = crypto.randomUUID();
           setCurrentModal(
-            <StartMeeting
+            <StartMeetingModal
               key={modalState.type}
               modalState={modalState}
               setModalState={setModalState}
@@ -38,7 +46,7 @@ const Modals = () => {
           break;
         case "Join Meeting for link":
           setCurrentModal(
-            <JoinMeetings
+            <JoinMeetingsModal
               key={modalState.type}
               modalState={modalState}
               setModalState={setModalState}

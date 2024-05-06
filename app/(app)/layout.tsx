@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import LeftBar from "@/components/LeftBar";
 import "../globals.css";
-import Modals from "@/components/Modals/Modals";
+import  Modals from "@/components/Modals/Modals";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,7 +42,7 @@ export default function RootLayout({
           {children}
         </main>
       </div>
-      <Modals/>
+       <Modals/> 
     </body>
   );
 }
