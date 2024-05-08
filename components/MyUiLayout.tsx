@@ -36,6 +36,7 @@ const CustomCallControls = ({showList}:{showList:Dispatch<SetStateAction<boolean
     await call?.endCall();
     router.push("/");
   };
+  console.log(call?.state.callingState)
 
   return (
     <div className="flex justify-center gap-3">
