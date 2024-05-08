@@ -21,7 +21,7 @@ const VideoCalls = () => {
   const { user: authUser, isLoaded } = useUser();
   useEffect(() => {
     if (myClient) {
-      const call = myClient!.call("default", param.get("id") as string);
+      const call = myClient!.call("default",'test-call' /* param.get("id") as string */);
       setMyCall(call);
     }
   }, [myClient]);

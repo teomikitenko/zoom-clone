@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -79,4 +78,10 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+.str-video__menu-container{
+  width: 35%;
+}
+.str-video__participant-list__content{
+overflow-x: hidden;
 }

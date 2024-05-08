@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
+import "@stream-io/video-react-sdk/dist/css/styles.css"; 
 import "./globals.css";
-import '@stream-io/video-react-sdk/dist/css/styles.css';
 import ModalProvider from "@/components/Provider";
 
 export const metadata: Metadata = {

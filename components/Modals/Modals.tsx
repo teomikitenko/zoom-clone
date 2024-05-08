@@ -61,6 +61,7 @@ const Modals = () => {
       }
     }
   }, [modalState?.open]);
+  useEffect(()=>setModalState({ open: false, type: "" }),[])
 
   return modalState?.open && modalState.type !== "Recordings"
     ? currentModal
