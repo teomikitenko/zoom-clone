@@ -28,7 +28,7 @@ const VideoCalls = () => {
   useEffect(() => {
     if (isLoaded) {
       const tokenProvider = async () => {
-        const res = await fetch(`/api/generate_token`, { cache: "no-store" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_MY_DEPLOYING_URL}/api/generate_token`, { cache: "no-store" });
         const { token } = await res.json();
         return token;
       };
