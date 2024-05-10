@@ -14,3 +14,7 @@ export type T = {
     icon: any;
     typeModal: string;
 }[]
+export type Layout = {
+  l: string;
+  prop: "left" | "top" | "bottom" | "right" | null;
+};

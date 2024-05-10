@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <body
       className={
-        inter.className + " " + "h-screen w-full  bg-[#1C1F2E]  text-slate-200 overflow-hidden"
+        inter.className + " " + "h-screen w-full  bg-[#1C1F2E]  text-slate-200"
       }
     >
       <div className="flex min-h-full w-full">

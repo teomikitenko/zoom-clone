@@ -21,14 +21,14 @@ const VideoCalls = () => {
   const { user: authUser, isLoaded } = useUser();
   useEffect(() => {
     if (myClient) {
-      const call = myClient!.call("default",'test-call' /* param.get("id") as string */);
+      const call = myClient!.call("default",'test-call' /* param.get("id") as string */);  //!!!change this field
       setMyCall(call);
     }
   }, [myClient]);
   useEffect(() => {
     if (isLoaded) {
       const tokenProvider = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_MY_DEPLOYING_URL}/api/generate_token`, { cache: "no-store" });
+        const res = await fetch(`/api/generate_token`, { cache: "no-store" });
         const { token } = await res.json();
         return token;
       };

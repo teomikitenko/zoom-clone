@@ -1,4 +1,4 @@
-import VideoCalls from "@/components/VideoCalls";
+import VideoCalls from "@/components/CallRoomsComponents/VideoCalls";
 
 const CallRoom = () => {
   return <VideoCalls />;

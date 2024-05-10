@@ -1,29 +1,26 @@
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { useEffect } from "react";
 import { VideoPreview, useCall } from "@stream-io/video-react-sdk";
-import Image from "next/image";
-import LoadingCircle from "@/public/icons/loading-circle.svg";
 import { DeviceSettings, useCallStateHooks } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 
 const Lobby = () => {
   const call = useCall();
   const { useCameraState } = useCallStateHooks();
-  const { camera, status } = useCameraState();
-  const router = useRouter()
+  const { camera } = useCameraState();
+  const router = useRouter();
   const joinCall = async () => {
-    await call?.join({create:true})
-    router.refresh()
+    await call?.join({ create: true });
+    router.refresh();
   };
   const toogleCamera = async () => {
     await call?.camera.toggle();
-  }
+  };
   useEffect(() => {
     const cameraOn = async () => {
       await camera.enable();
     };
     cameraOn();
   }, []);
-  console.log('render')
 
   return (
     <div className="flex flex-col gap-4 justify-center items-center">
@@ -33,11 +30,7 @@ const Lobby = () => {
       </div>
       <div className="flex gap-4">
         <input onClick={toogleCamera} type="checkbox" name="micro" id="micro" />
-        <label
-          htmlFor="micro"
-          
-          className="flex items-center"
-        >
+        <label htmlFor="micro" className="flex items-center">
           <p>Join with mic and camera off</p>
         </label>
         <DeviceSettings />
@@ -50,4 +43,3 @@ const Lobby = () => {
 };
 
 export default Lobby;
-
