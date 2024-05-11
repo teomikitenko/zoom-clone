@@ -9,26 +9,26 @@ import {
 } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
-import { useSearchParams } from "next/navigation";
 import CallManager from "./CallManager";
+import { useSearchParams } from 'next/navigation'
 
 const VideoCalls = () => {
-  const param = useSearchParams();
   const [myCall, setMyCall] = useState<Call | undefined>(undefined);
   const [myClient, setMyClient] = useState<StreamVideoClient | undefined>(
     undefined
   );
+  const params = useSearchParams()
   const { user: authUser, isLoaded } = useUser();
   useEffect(() => {
     if (myClient) {
-      const call = myClient!.call("default",'test-call' /* param.get("id") as string */);  //!!!change this field
+      const call = myClient!.call("default", params.get("id") as string );  
       setMyCall(call);
     }
   }, [myClient]);
   useEffect(() => {
     if (isLoaded) {
       const tokenProvider = async () => {
-        const res = await fetch(`/api/generate_token`, { cache: "no-store" });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_MY_DEPLOYING_URL}/api/generate_token`, { cache: "no-store" });
         const { token } = await res.json();
         return token;
       };

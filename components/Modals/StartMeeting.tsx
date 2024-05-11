@@ -5,7 +5,7 @@ import {
   DialogOverlay,
   DialogTitle,
 } from "../ui/dialog";
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { ModalState } from "@/types/types";
 import Link from "next/link";
 
