@@ -16,10 +16,9 @@ const prisma = new PrismaClient();
   } */
   export async function createMeeting(formdata:FormData){
   const user = await currentUser();
-  const id = new ObjectId(user?.id as string)
    await prisma.meetings.create({
     data:{
-      creatorId:'',
+      creatorId:user?.id as string,
       meetingDate:formdata.get('date') as string,
       meetingDescription:formdata.get('description') as string
     }
