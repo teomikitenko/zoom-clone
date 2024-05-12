@@ -49,12 +49,5 @@ export async function POST(req: Request) {
   }
   await createUser(userObj)
   }
-
-
-  const { id } = evt.data;
-  const eventType = evt.type;
-  console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-  console.log('Webhook body:', body)
-
   return new Response('', { status: 200 })
 }

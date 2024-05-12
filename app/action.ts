@@ -10,18 +10,22 @@ type UserObject = {
 
 const prisma = new PrismaClient();
 
- export async function createUser(userObject:UserObject) {
+export async function createUser(userObject:UserObject) {
   await prisma.users.create({
     data: userObject,
     });
   } 
-  export async function createMeeting(formdata:FormData){
+export async function createMeeting(formdata:FormData){
   const user = await currentUser();
-   await prisma.meetings.create({
+   await prisma.users.update({
+    where: { userClerkId: user?.id as string },
     data:{
-      creatorId:user?.id as string,
-      meetingDate:formdata.get('date') as string,
-      meetingDescription:formdata.get('description') as string
+      meetings:{
+        create:{
+          meetingDate:formdata.get('date') as string,
+          meetingDescription:formdata.get('description') as string
+        }
+      }
     }
   }) 
   }
