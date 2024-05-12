@@ -11,7 +11,7 @@ type UserObject = {
 const prisma = new PrismaClient();
 
  export async function createUser(userObject:UserObject) {
-  await prisma.user.create({
+  await prisma.users.create({
     data: userObject,
     });
   } 
