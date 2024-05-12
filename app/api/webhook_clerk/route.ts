@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
+import { createUser } from "@/app/action";
 
 export async function POST(req: Request) {
   const prisma = new PrismaClient();
@@ -46,6 +47,7 @@ export async function POST(req: Request) {
     userClerkId:evt.data.id,
     name:evt.data.first_name! + evt.data.last_name,
   }
+  await createUser(userObj)
   }
 
 
