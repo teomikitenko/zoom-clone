@@ -41,7 +41,13 @@ export async function POST(req: Request) {
       status: 400
     })
   }
-  console.log(evt.data)
+  if(evt.type === 'user.created'){
+  const userObj = {
+    userClerkId:evt.data.id,
+    name:evt.data.first_name! + evt.data.last_name,
+  }
+  }
+
 
   const { id } = evt.data;
   const eventType = evt.type;

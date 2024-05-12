@@ -1,19 +1,20 @@
 "use server"
 import { PrismaClient } from "@prisma/client";
 import { currentUser } from '@clerk/nextjs/server';
-import { ObjectId } from 'bson'  
+ 
 
+type UserObject = {
+  userClerkId:string,
+  name:string
+}
 
 const prisma = new PrismaClient();
 
-/* export async function createUser(formdata:FormData) {
+ export async function createUser(userObject:UserObject) {
   await prisma.user.create({
-    data: {
-      userClerkId:,
-      name: formdata.get('name') as string,
-      },
+    data: userObject,
     });
-  } */
+  } 
   export async function createMeeting(formdata:FormData){
   const user = await currentUser();
    await prisma.meetings.create({

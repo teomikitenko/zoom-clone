@@ -20,5 +20,4 @@ model Meetings {
   creatorId String
   meetingDate String
   meetingDescription String
-  
 }
