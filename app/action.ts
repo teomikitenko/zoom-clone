@@ -1,19 +1,27 @@
 "use server"
 import { PrismaClient } from "@prisma/client";
+import { currentUser } from '@clerk/nextjs/server';
+import { ObjectId } from 'bson'  
 
-export async function createUser(formdata:FormData) {
-    const prisma = new PrismaClient();
 
-    await prisma.user.create({
-      data: {
-        email: formdata.get('email') as string,
-        name: formdata.get('name') as string,
+const prisma = new PrismaClient();
+
+/* export async function createUser(formdata:FormData) {
+  await prisma.user.create({
+    data: {
+      userClerkId:,
+      name: formdata.get('name') as string,
       },
     });
-  }
-  export async function createMeetings(formdata:FormData){
-    console.log({
-      date:formdata.get('date'),
-      description:formdata.get('description')
-    })
+  } */
+  export async function createMeeting(formdata:FormData){
+  const user = await currentUser();
+  const id = new ObjectId(user?.id as string)
+   await prisma.meetings.create({
+    data:{
+      creatorId:'',
+      meetingDate:formdata.get('date') as string,
+      meetingDescription:formdata.get('description') as string
+    }
+  }) 
   }
