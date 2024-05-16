@@ -3,17 +3,18 @@ import { currentUser } from "@clerk/nextjs/server";
 import { StreamClient, VideoLayoutSettingsNameEnum, VideoRecordSettingsRequestModeEnum, VideoRecordSettingsRequestQualityEnum} from "@stream-io/node-sdk";
 import { NextResponse } from "next/server"
 
-const layoutOptions = {
-    "video.background_color":'#161925',
-    "grid.rows":'4',
-    "grid.columns":'2'
-    //add styles
-  };
+
 
 export async function GET() {
     const client =  new StreamClient(
         process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
         process.env.STREAM_SECRET_KEY as string);
+        const layoutOptions = {
+          "video.background_color":'#161925',
+          "grid.rows":'4',
+          "grid.columns":'2'
+          //add styles
+        };
         client.video.updateCallType('default',{
           settings:{
             recording:{
