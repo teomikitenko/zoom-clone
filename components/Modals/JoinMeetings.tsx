@@ -34,7 +34,7 @@ const JoinMeetings = ({
       const validUrl = new URL(url);
       return (
         Boolean(validUrl) &&
-        validUrl.origin === process.env.NEXT_PUBLIC_LOCAL_URL &&
+        validUrl.origin === process.env.NEXT_PUBLIC_MY_DEPLOYING_URL &&
         validUrl.searchParams.get("id")
       );
     } catch (error) {
