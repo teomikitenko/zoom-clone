@@ -11,6 +11,7 @@ import ParticipantList from "./CallsUi/ParticipantList";
 const CallManager = () => {
   const[showList,setShowList] = useState(false)
   const call = useCall();
+  console.log(call?.queryRecordings().then(console.log))
   return (
     <>
       <div className="w-full h-full">

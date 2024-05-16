@@ -1,13 +1,8 @@
 "use client";
 
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import DatePicker from "react-datepicker";
 import { Input } from "./ui/input";
-export function DatePicker({
+export function MyDatePicker({
   date,
   setDate,
 }: {
@@ -15,18 +10,12 @@ export function DatePicker({
   setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
 }) {
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Input className="mt-2" value={date?.toDateString()} />
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          initialFocus
-        />
-      </PopoverContent>
-    </Popover>
+    <DatePicker
+      showTimeSelect
+      customInput={<Input className="mt-2" value={date?.toString()} />}
+      dateFormat="MMM dd yyyy h:mm aa"
+      selected={date}
+      onChange={(date) => setDate(date as Date)}
+    />
   );
 }

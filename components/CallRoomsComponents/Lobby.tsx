@@ -5,9 +5,23 @@ import { useRouter } from "next/navigation";
 
 const Lobby = () => {
   const call = useCall();
-  const { useCameraState } = useCallStateHooks();
+  const { useCameraState,useCallSession } = useCallStateHooks();
   const { camera } = useCameraState();
   const router = useRouter();
+  const session = useCallSession()
+console.log(session?.id)
+/* call?.queryRecordings(session?.id).then(console.log) */
+
+
+//first user
+//b7b2a73d-9460-474b-9cab-e32d22f377e1
+//b7b2a73d-9460-474b-9cab-e32d22f377e1
+  
+//second user
+//
+//
+
+
   const joinCall = async () => {
     await call?.join({ create: true });
     router.refresh();
@@ -21,7 +35,6 @@ const Lobby = () => {
     };
     cameraOn();
   }, []);
-
   return (
     <div className="flex flex-col gap-4 justify-center items-center">
       <h1 className="text-2xl font-semibold">Setup</h1>

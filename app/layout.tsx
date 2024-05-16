@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@stream-io/video-react-sdk/dist/css/styles.css"; 
+import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
-import ModalProvider from "@/components/Provider";
+import Provider from "@/components/Provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html>
-        <ModalProvider>{children}</ModalProvider>
+        <Provider>{children}</Provider>
       </html>
     </ClerkProvider>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/toaster"
 import LeftBar from "@/components/LeftBar";
 import "../globals.css";
 import  Modals from "@/components/Modals/Modals";
@@ -38,9 +39,10 @@ export default function RootLayout({
       </header>
       <div className="flex min-h-full w-full">
         <LeftBar />
-        <main className="pl-7 pr-7 pb-7 pt-16 bg-[#161925] min-h-full w-full">
+        <main className="pl-7 pr-7 pb-7 pt-24 bg-[#161925] min-h-full w-full">
           {children}
         </main>
+        <Toaster />
       </div>
        <Modals/> 
     </body>

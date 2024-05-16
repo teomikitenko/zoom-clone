@@ -4,6 +4,7 @@ import { ModalContext } from "../Provider";
 import { T } from "@/types/types";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import { useUser } from "@clerk/clerk-react";
 
 const CreateMeetingsModal = dynamic(() => import("./CreateMeetings"), {
   ssr: false,
@@ -19,6 +20,8 @@ const Modals = () => {
   const { modalState, setModalState } = useContext(
     ModalContext as React.Context<T>
   );
+  const {user} = useUser()
+
   const router = useRouter();
   const [currentModal, setCurrentModal] = useState<JSX.Element | null>(null);
   useEffect(() => {
@@ -34,13 +37,13 @@ const Modals = () => {
           );
           break;
         case "Start Meeting":
-          let uuid = crypto.randomUUID();
+          const id = user?.id;
           setCurrentModal(
             <StartMeetingModal
               key={modalState.type}
               modalState={modalState}
               setModalState={setModalState}
-              idMeeting={uuid}
+              idMeeting={id as string}
             />
           );
           break;

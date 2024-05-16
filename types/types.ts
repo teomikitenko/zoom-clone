@@ -18,3 +18,20 @@ export type Layout = {
   l: string;
   prop: "left" | "top" | "bottom" | "right" | null;
 };
+export type UserObject = {
+  userClerkId:string,
+  name:string
+}
+export type Meeting =  {
+  user: {
+      id: string;
+      userClerkId: string;
+      name: string | null;
+  };
+} & {
+  id: string;
+  creatorId: string;
+  meetingDate: Date;
+  meetingDescription: string;
+  meetingId: string;
+}

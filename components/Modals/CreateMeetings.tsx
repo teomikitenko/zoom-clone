@@ -1,4 +1,4 @@
-import { DatePicker } from "../DatePicker";
+import { MyDatePicker } from "../DatePicker";
 import type { ModalState } from "@/types/types";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Input } from "../ui/input";
@@ -21,8 +21,8 @@ const CreateMeetingsModal = ({
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   const addMeeting = async (formData: FormData, date: Date | undefined) => {
-    formData.append("date", date?.toDateString() as string);
-    await createMeeting(formData);
+    formData.append("date", date?.toISOString() as string);
+     await createMeeting(formData);
     setModalState({ open: false, type: "" });
   };
   return (
@@ -45,11 +45,14 @@ const CreateMeetingsModal = ({
               Add a description
               <Input className="mt-2" name="description" type="text" />
             </label>
-            <label className="text-xs text-slate-300">
-              Select Date & Time
-              <DatePicker date={date} setDate={setDate} />
-            </label>
-            <button className="w-full bg-buttons rounded-sm px-4 py-2 ">
+            <div className="flex flex-col">
+              <p className="text-xs text-slate-300">Select Date & Time</p>
+              <MyDatePicker date={date} setDate={setDate} />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-buttons rounded-sm px-4 py-2 "
+            >
               <p className="text-slate-100 ">Create Meeting</p>
             </button>
           </form>
