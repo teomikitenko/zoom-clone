@@ -11,8 +11,8 @@ export async function GET() {
         process.env.STREAM_SECRET_KEY as string);
         const layoutOptions = {
           "video.background_color":'#161925',
-          "grid.rows":'4',
-          "grid.columns":'2'
+          "grid.rows":4,
+          "grid.columns":2
           //add styles
         };
         client.video.updateCallType('default',{

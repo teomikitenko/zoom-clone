@@ -30,6 +30,9 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
         user,
         tokenProvider: tokenProvider as TokenProvider,
       });
+      
+
+      
 
       setMyClient(client);
     }
