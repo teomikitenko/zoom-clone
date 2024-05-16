@@ -14,10 +14,12 @@ const VideoCalls = () => {
   const params = useSearchParams();
   useEffect(() => {
     if (client) {
-      const call = client!.call("default", params.get("id") as string);
+      const call = client!.call("default", params.get("id") as string)
       setMyCall(call);
+  
     }
   }, [client]);
+
   return (
     <>
       <div className="w-full h-full flex flex-col gap-5">

@@ -8,20 +8,6 @@ const Lobby = () => {
   const { useCameraState,useCallSession } = useCallStateHooks();
   const { camera } = useCameraState();
   const router = useRouter();
-  const session = useCallSession()
-console.log(session?.id)
-/* call?.queryRecordings(session?.id).then(console.log) */
-
-
-//first user
-//b7b2a73d-9460-474b-9cab-e32d22f377e1
-//b7b2a73d-9460-474b-9cab-e32d22f377e1
-  
-//second user
-//
-//
-
-
   const joinCall = async () => {
     await call?.join({ create: true });
     router.refresh();
