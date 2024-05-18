@@ -16,7 +16,6 @@ const VideoCalls = () => {
     if (client) {
       const call = client!.call("default", params.get("id") as string)
       setMyCall(call);
-  
     }
   }, [client]);
 

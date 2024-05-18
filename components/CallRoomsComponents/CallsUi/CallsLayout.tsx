@@ -13,8 +13,6 @@ const CallsLayout = ({
     l: "GridLayout",
     prop: "right",
   });
-  const call = useCall()
-  
   return (
     <div className="flex flex-col flex-grow ">
       <SwapLayout layout={layout} />

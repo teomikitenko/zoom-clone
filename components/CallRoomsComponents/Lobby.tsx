@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { VideoPreview, useCall } from "@stream-io/video-react-sdk";
 import { DeviceSettings, useCallStateHooks } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
+import type { VideoRecordSettingsRequest } from "@stream-io/node-sdk";
 
 const Lobby = () => {
   const call = useCall();

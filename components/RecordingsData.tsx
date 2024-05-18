@@ -28,7 +28,7 @@ const RecordingsData = () => {
       {recordings?.recordings.map((r) => (
         <>
           <p>{r.filename}</p>
-          <video src={r.url} width={250} height={250} controls autoPlay>
+          <video src={r.url} width={250} height={250} controls >
             video don`t avialable
           </video>
         </>
