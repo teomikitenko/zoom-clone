@@ -10,7 +10,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const client = new StreamClient(
     process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
-    process.env.STREAM_SECRET_KEY as string, { timeout: 2 }
+    process.env.STREAM_SECRET_KEY as string, { timeout: 3000 }
   );
   const layoutOptions = {
     "logo.image_url": "",
