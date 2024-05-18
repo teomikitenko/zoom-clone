@@ -26,7 +26,7 @@ export async function GET() {
                 quality: VideoRecordSettingsRequestQualityEnum._1080P,
                 layout: {
                   name: VideoLayoutSettingsNameEnum.GRID,
-                  options: layoutOptions,
+                 // options: layoutOptions,
                 },
               },
             },
