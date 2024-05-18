@@ -11,7 +11,6 @@ const Upcoming =() => {
     <div className="h-full flex flex-col gap-5">
       <h1 className="text-3xl font-bold">Upcoming</h1>
      <Suspense fallback={<Skeleton/>}>
-      {/* @ts-expect-error Async Server Component */}
      <UpcomingData/>
      </Suspense>
     </div>
