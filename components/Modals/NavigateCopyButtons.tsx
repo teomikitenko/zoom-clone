@@ -1,4 +1,3 @@
-"use client";
 import CopyIcon from "@/public/icons/copy.svg";
 import Image from "next/image";
 import { useToast } from "../ui/use-toast";

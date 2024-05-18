@@ -5,36 +5,45 @@ import {
   useStreamVideoClient,
 } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
+import Card from "./Card";
+import Skeleton from "./Skeleton";
+export const dynamic = 'force-dynamic'
 
 const RecordingsData = () => {
   const client = useStreamVideoClient();
   const { user, isLoaded } = useUser();
   const [recordings, setRecordings] = useState<ListRecordingsResponse>();
   useEffect(() => {
-    if (isLoaded) {
-      const getRecordings = async () => {
-        const call = client!.call("default", user?.id as string);
-        const recordCalls = await call.queryRecordings();
-        setRecordings(recordCalls);
+    if (client&&isLoaded) {
+      const getRec = async () => {
+        const getRecordings = async () => {
+          const call = client!.call("default", user?.id as string);
+          const recordCalls = await call.queryRecordings();
+          setRecordings(recordCalls);
+        };
+        await getRecordings();
       };
-      getRecordings();
+      getRec();
     }
     return () => {
       client?.disconnectUser;
     };
-  }, [isLoaded]);
+  }, [client]);
   return (
-    <div className="flex flex-col">
-      {recordings?.recordings.map((r) => (
-        <>
-          <p>{r.filename}</p>
-          <video src={r.url} width={250} height={250} controls >
-            video don`t avialable
-          </video>
-        </>
-      ))}
-    </div>
+    <>
+      {recordings ? (
+        <div className="grid grid-cols-2 gap-3">
+          {recordings?.recordings.map((r) => (
+            <Card key={r.filename} record={r} />
+          ))}
+        </div>
+      ) : (
+        <Skeleton/>
+      )}
+    </>
   );
 };
 
 export default RecordingsData;
+
+

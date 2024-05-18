@@ -1,23 +1,33 @@
 import { upcomingMeetings } from "@/app/action";
-import CardMeeting from "@/components/CardMeeting";
+import Card from "@/components/Card";
+import Skeleton from "@/components/Skeleton";
 import { currentUser } from "@clerk/nextjs/server";
-import { headers } from "next/headers";
+import { Suspense } from "react";
 
-const Upcoming = async () => {
-  const meetings = await upcomingMeetings();
-  const path = headers().get('x-path') 
-  const user = await currentUser();
+export const dynamic = 'force-dynamic'
+
+const Upcoming =() => {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="h-full flex flex-col gap-5">
       <h1 className="text-3xl font-bold">Upcoming</h1>
-      <div className="grid grid-cols-2 gap-3">
-        {meetings.map((m) => {
-          /* @ts-expect-error Server Component */
-          return <CardMeeting key={m.meetingId} userId = {user?.id} type={path} meeting={m} />;
-        })}
-      </div>
+     <Suspense fallback={<Skeleton/>}>
+      {/* @ts-expect-error Async Server Component */}
+     <UpcomingData/>
+     </Suspense>
     </div>
   );
 };
 
 export default Upcoming;
+
+const UpcomingData = async()=>{
+  const meetings = await upcomingMeetings();
+  const user = await currentUser();
+  return(
+    <div className="grid grid-cols-2 gap-3">
+    {meetings.map((m) => {
+      return <Card key={m.meetingId} userId = {user?.id} meeting={m} />;
+    })}
+  </div>
+  )
+}

@@ -2,7 +2,6 @@ import { Dispatch, SetStateAction,useState } from "react";
 import SwapLayout from "./SwapLayout";
 import type { Layout } from "@/types/types";
 import CustomCallControls from "./CustomCallControls";
-import { useCall } from "@stream-io/video-react-sdk";
 const CallsLayout = ({
   showList,
 }: {
