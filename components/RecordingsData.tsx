@@ -27,16 +27,20 @@ const RecordingsData = () => {
               { members: { $in: [user?.id] } },
             ],
           },
-          limit: 10,
+          limit: 100,
           watch: true,
         });
 
         const recordCall = await Promise.all(
           calls.map(async (r) => await r.queryRecordings())
         );
-        setRecordings(recordCall.flatMap((r) => r.recordings));
+        setRecordings(
+          recordCall
+            .filter((c) => c.recordings.length > 0)
+            .flatMap((r) => r.recordings)
+        );
       };
-      getRecords();
+      setTimeout(getRecords, 3000);
     }
   }, [client, isLoaded]);
   return (
