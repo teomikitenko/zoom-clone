@@ -11,7 +11,7 @@ export async function GET() {
   const user = await currentUser();
     let client = new StreamClient(
       process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
-      process.env.STREAM_SECRET_KEY as string,{timeout:1000}
+      process.env.STREAM_SECRET_KEY as string,{timeout:50}
     );
     const layoutOptions = {
       "logo.image_url": "",
