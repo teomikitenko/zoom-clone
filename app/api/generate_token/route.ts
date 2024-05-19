@@ -7,7 +7,7 @@ import {
 } from "@stream-io/node-sdk";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function POST(req:Request) {
   const user = await currentUser();
   let client
   try{
@@ -42,7 +42,7 @@ export async function POST() {
     return NextResponse.json({ token });
   }
   catch(error){
-
+    NextResponse.redirect(new URL('/recordings', req.url))
   }
     
 
