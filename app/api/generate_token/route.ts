@@ -9,11 +9,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(req:Request) {
   const user = await currentUser();
-  let client
-  try{
-     client = new StreamClient(
+  let client = new StreamClient(
       process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
-      process.env.STREAM_SECRET_KEY as string,{timeout:3000}
+      process.env.STREAM_SECRET_KEY as string,{timeout:6000}
     );
     const layoutOptions = {
       "logo.image_url": "",
@@ -23,7 +21,6 @@ export async function POST(req:Request) {
       "participant.label_border_radius": 1.3,
       "participant.label_display_border": true,
     };
-  
     client.video.updateCallType("default", {
       settings: {
         recording: {
@@ -40,11 +37,8 @@ export async function POST(req:Request) {
     const exp = Math.round(new Date().getTime() / 1000) + 60 * 60;
     const token = client.createToken(user?.id as string);
     return NextResponse.json({ token });
-  }
-  catch(error){
-    console.log('this is error' + error)
-    //NextResponse.redirect(new URL('/recordings', req.url))
-  }
+  
+
     
 
   
