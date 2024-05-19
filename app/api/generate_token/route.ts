@@ -42,7 +42,8 @@ export async function POST(req:Request) {
     return NextResponse.json({ token });
   }
   catch(error){
-    NextResponse.redirect(new URL('/recordings', req.url))
+    console.log('this is error' + error)
+    //NextResponse.redirect(new URL('/recordings', req.url))
   }
     
 
