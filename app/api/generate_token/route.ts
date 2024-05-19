@@ -9,9 +9,11 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   const user = await currentUser();
-    let client = new StreamClient(
+  let client
+  try{
+     client = new StreamClient(
       process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
-      process.env.STREAM_SECRET_KEY as string,{timeout:1000}
+      process.env.STREAM_SECRET_KEY as string,{timeout:3000}
     );
     const layoutOptions = {
       "logo.image_url": "",
@@ -38,6 +40,11 @@ export async function POST() {
     const exp = Math.round(new Date().getTime() / 1000) + 60 * 60;
     const token = client.createToken(user?.id as string);
     return NextResponse.json({ token });
+  }
+  catch(error){
+
+  }
+    
 
   
 }
