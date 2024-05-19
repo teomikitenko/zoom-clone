@@ -7,7 +7,7 @@ import {
 } from "@stream-io/node-sdk";
 import { NextResponse } from "next/server";
 
-export async function POST(req:Request) {
+export async function GET(req:Request) {
   const user = await currentUser();
   let client = new StreamClient(
       process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
