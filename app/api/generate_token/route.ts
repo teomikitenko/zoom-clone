@@ -8,10 +8,8 @@ import {
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  let client:StreamClient
   const user = await currentUser();
-  try {
-    client = new StreamClient(
+    let client = new StreamClient(
       process.env.NEXT_PUBLIC_STREAM_API_KEY as string,
       process.env.STREAM_SECRET_KEY as string, { timeout: 3000 }
     );
@@ -40,9 +38,6 @@ export async function GET() {
     const exp = Math.round(new Date().getTime() / 1000) + 60 * 60;
     const token = client.createToken(user?.id as string);
     return NextResponse.json({ token });
-  } catch (error) {
-    const token = client!.createToken(user?.id as string);
-    return NextResponse.json({ token });
-  }
+
   
 }
