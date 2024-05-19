@@ -40,7 +40,7 @@ const RecordingsData = () => {
             .flatMap((r) => r.recordings)
         );
       };
-      setTimeout(getRecords, 3000);
+      getRecords()
     }
   }, [client, isLoaded]);
   return (
