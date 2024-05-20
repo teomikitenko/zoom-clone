@@ -9,39 +9,39 @@ import CurrentDate from "@/components/CurrentDate";
 import CallModal from "@/components/Modals/CallModal";
 
 export default function Home() {
-  const createLink:LinksType = [
+  const createLink: LinksType = [
     {
       title: "New Meeting",
       descr: "Setup a new recording",
       color: "bg-[#FF742E]",
       icon: AddMeeting,
-      typeModal:'Start Meeting'
+      typeModal: "Start Meeting",
     },
     {
       title: "Join Meeting",
       descr: "via invitation link",
       color: "bg-[#0E78F9]",
       icon: JoinMeeting,
-      typeModal:'Join Meeting for link'
+      typeModal: "Join Meeting for link",
     },
     {
       title: "Schedule Meeting",
       descr: "Plan your meeting",
       color: "bg-[#830EF9]",
       icon: Schedule,
-      typeModal:'Create Meeting'
+      typeModal: "Create Meeting",
     },
     {
       title: "View Recordings",
       descr: "Meeting recordings",
       color: "bg-[#F9A90E]",
       icon: Recordings,
-      typeModal:'Recordings'
+      typeModal: "Recordings",
     },
   ];
   return (
     <>
-       <div className="flex flex-col w-full h-full relative">
+      <div className="flex flex-col w-full h-full relative">
         <div className="flex flex-col gap-7">
           <div className="relative h-[19rem] w-full ">
             <Image
@@ -53,28 +53,16 @@ export default function Home() {
               className="absolute top-0 left-0 object-cover rounded-xl"
               alt="hero"
             />
-            <CurrentDate/>
+            <CurrentDate />
           </div>
           <div className="grid gap-3 grid-cols-4 h-[16rem]">
             {createLink.map((l) => (
-              <div
-                key={l.title}
-                className={`${l.color} rounded-md flex flex-col justify-between p-5`}
-              >
-                <div className="w-full relative">
-                  <div className="w-16 rounded-lg h-16 opacity-35 bg-white"></div>
-                <CallModal icon={l.icon} typeModal={l.typeModal} />
-                </div>
-                <div>
-                  <p className="text-lg font-medium">{l.title}</p>
-                  <p className="text-sm">{l.descr}</p>
-                </div>
-              </div>
+              <CallModal key={l.title} linkData={l} />
             ))}
           </div>
         </div>
         <h1 className="text-lg">Today’s Upcoming Meetings</h1>
-      </div> 
+      </div>
     </>
   );
 }
