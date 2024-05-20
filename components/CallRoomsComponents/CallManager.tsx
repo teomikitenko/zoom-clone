@@ -2,8 +2,9 @@ import Lobby from "./Lobby";
 import {
   useCall,
   StreamTheme,
+  useCallStateHooks,
 } from "@stream-io/video-react-sdk";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CallsLayout from "./CallsUi/CallsLayout";
 import ParticipantList from "./CallsUi/ParticipantList";
 
@@ -11,6 +12,7 @@ import ParticipantList from "./CallsUi/ParticipantList";
 const CallManager = () => {
   const[showList,setShowList] = useState(false)
   const call = useCall();
+
   return (
     <>
       <div className="w-full h-full">

@@ -51,3 +51,20 @@ export async function prevMeetings() {
   });
   return meetings;
 }
+export async function todayMeetings() {
+  let today = new Date() 
+  let tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate()+1)
+  const meetings = await prisma.meetings.findMany({
+    where: {
+      meetingDate: {
+        gt: new Date().toISOString(),
+        lt: tomorrow.toISOString(),
+      },
+    },
+    include: {
+      user: true,
+    },
+  });
+  return meetings;
+}

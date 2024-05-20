@@ -7,6 +7,7 @@ import Recordings from "@/public/icons/recordings.svg";
 import { LinksType } from "@/types/types";
 import CurrentDate from "@/components/CurrentDate";
 import CallModal from "@/components/Modals/CallModal";
+import TodayData from "@/components/GetDataMeetings/TodayData";
 
 export default function Home() {
   const createLink: LinksType = [
@@ -60,8 +61,11 @@ export default function Home() {
               <CallModal key={l.title} linkData={l} />
             ))}
           </div>
+          <div className="flex flex-col gap-5">
+            <h1 className="text-lg">Today’s Upcoming Meetings</h1>
+            <TodayData />
+          </div>
         </div>
-        <h1 className="text-lg">Today’s Upcoming Meetings</h1>
       </div>
     </>
   );
