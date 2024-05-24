@@ -41,7 +41,7 @@ const BurgerMenu = () => {
   return (
     <>
       <div
-        className={`z-[100] fixed ${openModal} top-0 left-0 w-full h-full`}
+        className={`z-[100] fixed sm:hidden ${openModal} top-0 left-0 w-full h-full`}
       >
         <div
           onClick={closeMenu}
