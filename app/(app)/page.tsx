@@ -42,29 +42,28 @@ export default function Home() {
   ];
   return (
     <>
-      <div className="flex flex-col w-full h-full relative">
+      <div className="flex flex-col gap-20 xl:gap-5 w-full h-full relative">
         <div className="flex flex-col gap-7">
-          <div className="relative h-[19rem] w-full ">
+          <div className="relative h-[19rem] w-full rounded-xl overflow-hidden ">
             <Image
               src={Hero}
               quality={100}
-              priority
               width={1500}
               height={1500}
-              className="absolute top-0 left-0 object-cover rounded-xl"
+              className="absolute top-0 w-full h-full left-0 object-cover"
               alt="hero"
             />
             <CurrentDate />
           </div>
-          <div className="grid gap-3 grid-cols-4 h-[16rem]">
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 h-min-[16rem]">
             {createLink.map((l) => (
               <CallModal key={l.title} linkData={l} />
             ))}
           </div>
-          <div className="flex flex-col gap-5">
-            <h1 className="text-lg">Today’s Upcoming Meetings</h1>
-            <TodayData />
-          </div>
+        </div>
+        <div className="flex flex-col gap-5">
+          <h1 className="text-2xl font-bold">Today’s Upcoming Meetings</h1>
+          <TodayData />
         </div>
       </div>
     </>

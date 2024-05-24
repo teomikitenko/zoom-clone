@@ -46,7 +46,7 @@ const RecordingsData = () => {
   return (
     <>
       {recordings ? (
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {recordings?.map((r) => (
             <Card key={r.filename} record={r} />
           ))}

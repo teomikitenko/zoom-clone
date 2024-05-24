@@ -15,6 +15,11 @@ export type LinkData = {
   icon: any;
   typeModal: string;
 };
+export type LeftBarLink = {
+    title: string;
+    img: any;
+    link: string;
+}
 
 export type Layout = {
   l: string;

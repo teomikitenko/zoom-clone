@@ -7,9 +7,9 @@ const TodayData = async () => {
     const user = await currentUser();
     return (
       <div className="grid grid-cols-2 gap-3">
-        {meetings.map((m) => {
+        {meetings.length>0?meetings.map((m) => {
           return <Card key={m.meetingId} userId={user?.id} meeting={m} />;
-        })}
+        }):<p>No Today Mettings</p>}
       </div>
     );
   };

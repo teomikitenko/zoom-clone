@@ -27,7 +27,7 @@ const Card = ({
       ? RecordingsIcon
       : PrevIcon;
   const editFileName = (name: CallRecording) => {
-    return name.filename.slice(0, 30);
+    return name.filename.slice(0, 20);
   };
   const constructTime = (t: Date) => {
     return new Intl.DateTimeFormat("uk-UA", {
@@ -39,24 +39,24 @@ const Card = ({
   return (
     <div className="px-4 py-5 flex flex-col gap-2 bg-[#1C1F2E] rounded-lg">
       <Image src={currentIcon} width={25} height={25} alt="schedule-icon" />
-      <p className="text-2xl font-bold text-ellipsis">
+      <p className="text-xl md:text-2xl font-bold text-ellipsis">
         {meeting ? meeting.meetingDescription : editFileName(record!)}
       </p>
       <div className="flex gap-3">
-        <p className="text-md font-light">
+        <p className="text-sm md:text-md font-light">
           {meeting
             ? meeting.meetingDate.toDateString()
             : record!.start_time.split("T")[0]}
         </p>
         {meeting && (
-          <p className="text-md font-light">
+          <p className="text-sm md:text-md font-light">
             {constructTime(meeting.meetingDate)}
           </p>
         )}
       </div>
 
       {meeting && userId && userId === meeting.user.userClerkId && (
-        <NavigateCopyButtons id={meeting.meetingId} />
+        <NavigateCopyButtons key='recordings' type="recordings" id={meeting.meetingId} />
       )}
       {type === "recordings" && <PlayCopyButtons url={record?.url as string} />}
     </div>
