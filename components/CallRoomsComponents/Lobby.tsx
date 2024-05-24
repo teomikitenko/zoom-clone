@@ -22,9 +22,9 @@ const Lobby = () => {
     cameraOn();
   }, []);
   return (
-    <div className="flex flex-col gap-4 justify-center items-center">
+    <div className="flex flex-col gap-4 justify-center items-center ">
       <h1 className="text-2xl font-semibold">Setup</h1>
-      <div className="w-[38%] ">
+      <div className="min-w-[250px] w-[38%] ">
         <VideoPreview className="!w-full" />
       </div>
       <div className="flex gap-4">

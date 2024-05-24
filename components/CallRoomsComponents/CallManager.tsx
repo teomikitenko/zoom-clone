@@ -15,7 +15,7 @@ const CallManager = () => {
 
   return (
     <>
-      <div className="w-full h-full">
+      <div className="w-full h-full relative">
         <StreamTheme>
           {call?.state.callingState === "idle" && (
             <Lobby />
