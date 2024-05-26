@@ -83,5 +83,5 @@
   width: 35%;
 }
 .str-video__participant-list__content{
-overflow-x: hidden;
+overflow-x: auto;
 }

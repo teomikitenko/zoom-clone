@@ -36,9 +36,9 @@ const CustomCallControls = ({
     }
   }, [endCallParticipant]);
   return (
-    <div className="flex justify-center gap-3">
+    <div className="flex flex-col lg:flex-row justify-center gap-3">
       <CallControls onLeave={() => router.push("/")} />
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-3 items-center justify-center">
         <CallStatsButton />
         <div className="flex gap-3">
           <button
@@ -47,7 +47,7 @@ const CustomCallControls = ({
           >
             <LayoutList />
             {modalLayout && (
-              <div className=" absolute top-[-107px] left-[-80px] px-3 py-3 bg-slate-900 rounded-lg">
+              <div className="absolute top-[-107px] left-[-80px] px-3 py-3 bg-slate-900 rounded-lg">
                 <ul className="flex flex-col gap-2">
                   <li
                     onClick={() =>
@@ -88,13 +88,13 @@ const CustomCallControls = ({
             onClick={() => showList((val) => !val)}
             className="bg-[#1d2938] p-2 rounded-full hover:bg-[#4c535b]"
           >
-            <Users />
+            <Users/>
           </button>
         </div>
         {user?.id === ownerCall?.id && (
           <button
             onClick={endCall}
-            className="bg-[#dc433b] py-2 px-3  rounded-md hover:bg-[#e96962] "
+            className="bg-[#dc433b] py-1 px-1 sm:py-2 sm:px-3  rounded-md hover:bg-[#e96962] "
           >
             <p className="text-sm">End call for everyone</p>
           </button>

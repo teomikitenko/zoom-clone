@@ -15,7 +15,7 @@ const CallsLayout = ({
   
   
   return (
-    <div className="flex flex-col flex-grow ">
+    <div className="flex flex-col flex-grow">
       <SwapLayout layout={layout} />
       <CustomCallControls showList={showList} setLayout={setLayout} />
     </div>

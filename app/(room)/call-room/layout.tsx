@@ -14,7 +14,7 @@ export default function RoomLayout({
         inter.className + " " + "min-h-screen w-full  bg-[#1C1F2E]  text-slate-200"
       }
     >
-       <div className="flex min-h-full w-full">
+       <div className="min-h-full w-full">
         <main className="px-7 pb-7 pt-14 bg-[#161925] min-h-screen min-w-[370px] max-w-[1500px] w-full">
           {children}
         </main>
