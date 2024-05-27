@@ -30,10 +30,10 @@ const CreateMeetingsModal = ({
       open={modalState?.open}
       onOpenChange={(open) => setModalState({ open, type: "" })}
     >
-      <DialogOverlay className="h-full fixed w-full top-0 z-30  flex items-center justify-center">
-        <DialogContent className=" flex flex-col rounded-lg px-6 py-5 gap-4 w-[35%]">
+      <DialogOverlay >
+        <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">
+            <DialogTitle className="text-2xl text-left font-bold">
               Create Meeting
             </DialogTitle>
           </DialogHeader>

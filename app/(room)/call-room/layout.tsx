@@ -15,7 +15,7 @@ export default function RoomLayout({
       }
     >
        <div className="min-h-full w-full">
-        <main className="px-7 pb-7 pt-14 bg-[#161925] min-h-screen min-w-[370px] max-w-[1500px] w-full">
+        <main className="px-7 pb-7 pt-14 bg-[#161925] min-h-screen min-w-[370px] w-full">
           {children}
         </main>
       </div> 
