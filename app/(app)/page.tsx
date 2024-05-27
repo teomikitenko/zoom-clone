@@ -44,7 +44,7 @@ export default function Home() {
     <>
       <div className="flex flex-col gap-20 xl:gap-5 w-full h-full relative">
         <div className="flex flex-col gap-7">
-          <div className="relative h-[19rem] w-full rounded-xl overflow-hidden ">
+          <div className="relative h-[13rem]  sm:h-[19rem] w-full rounded-xl overflow-hidden ">
             <Image
               src={Hero}
               quality={100}

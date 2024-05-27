@@ -2,6 +2,7 @@
 import { PrismaClient } from "@prisma/client";
 import { currentUser } from "@clerk/nextjs/server";
 import type { UserObject } from "@/types/types";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -58,7 +59,7 @@ export async function todayMeetings() {
   const meetings = await prisma.meetings.findMany({
     where: {
       meetingDate: {
-        gt: new Date().toISOString(),
+        gt: today.toISOString(),
         lt: tomorrow.toISOString(),
       },
     },

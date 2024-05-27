@@ -23,7 +23,7 @@ export default function AppLayout({
       <Header/>
       <div className="flex min-h-full w-full">
         <LeftBar />
-        <main className="px-14 md:px-10 pb-7 pt-24 bg-[#161925] min-h-screen min-w-[370px] max-w-[1500px] w-full">
+        <main className="px-9 sm:px-9 lg:px-6 pb-7 pt-24 bg-[#161925] min-h-screen min-w-[370px] max-w-[1500px] w-full">
           {children}
         </main>
         <Toaster />

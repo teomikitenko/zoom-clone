@@ -49,7 +49,7 @@ const BurgerMenu = () => {
         ></div>
 
         <div
-          className={`absolute h-full top-0 ${animationMenu} w-[55%] bg-[#1C1F2E] py-4 px-5`}
+          className={`absolute h-full top-0 ${animationMenu} w-[60%] bg-[#1C1F2E] py-4 px-5`}
         >
           <div className="h-full w-full relative">
             <X
