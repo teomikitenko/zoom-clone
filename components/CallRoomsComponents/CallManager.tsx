@@ -20,7 +20,7 @@ const CallManager = () => {
           {call?.state.callingState === "idle" && (
             <Lobby />
           )}
-          <div className="flex">
+          <div className="block sm:flex">
           {call?.state.callingState === "joined" && <CallsLayout showList = {setShowList} />}
           <ParticipantList showList={showList} setList = {setShowList}/>
           </div>

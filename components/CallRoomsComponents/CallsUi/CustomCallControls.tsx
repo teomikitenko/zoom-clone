@@ -36,7 +36,7 @@ const CustomCallControls = ({
     }
   }, [endCallParticipant]);
   return (
-    <div className="flex flex-col lg:flex-row justify-center gap-3">
+    <div className="flex flex-wrap justify-center gap-3">
       <CallControls onLeave={() => router.push("/")} />
       <div className="flex gap-3 items-center justify-center">
         <CallStatsButton />

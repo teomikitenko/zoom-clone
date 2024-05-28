@@ -85,3 +85,6 @@
 .str-video__participant-list__content{
 overflow-x: auto;
 }
+.str-video__call-controls{
+flex-wrap: wrap;
+}
