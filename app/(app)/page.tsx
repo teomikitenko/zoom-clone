@@ -42,7 +42,7 @@ export default function Home() {
   ];
   return (
     <>
-      <div className="flex flex-col gap-20 xl:gap-5 w-full h-full relative">
+      <div className="mx-auto flex flex-col gap-20 xl:gap-5 w-full h-full relative max-w-[1450px]">
         <div className="flex flex-col gap-7">
           <div className="relative h-[13rem]  sm:h-[19rem] w-full rounded-xl overflow-hidden ">
             <Image
@@ -55,7 +55,7 @@ export default function Home() {
             />
             <CurrentDate />
           </div>
-          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 h-min-[16rem]">
+          <div className="grid gap-3 lg:gap-2 grid-cols-1 2xl:gap-4 md:grid-cols-2 xl:grid-cols-4 h-min-[16rem]">
             {createLink.map((l) => (
               <CallModal key={l.title} linkData={l} />
             ))}
