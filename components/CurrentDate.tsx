@@ -24,7 +24,7 @@ const CurrentDate = () => {
     return () => clearTimeout(timerid);
   }, [currentTime]);
   return (
-    <div className="absolute bottom-9 left-5">
+    <div className="absolute bottom-4 left-5">
       <p suppressHydrationWarning className="text-4xl lg:text-6xl font-bold text-white">
         {currentTime}
       </p>
